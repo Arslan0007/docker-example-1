@@ -1,0 +1,10 @@
+services:
+  backend-python:
+    build: ./backend
+    ports:
+      - "8000:8000"
+  
+  frontend-node:
+    build: ./frontend
+    ports:
+      - "80:80"

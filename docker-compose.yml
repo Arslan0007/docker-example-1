@@ -3,8 +3,16 @@ services:
     build: ./backend
     ports:
       - "8000:8000"
-  
+    volumes:
+      - type: bind
+        source: ./backend
+        target: /app
+
   frontend-node:
     build: ./frontend
     ports:
       - "80:80"
+    volumes:
+      - type: bind
+        source: ./frontend
+        target: /usr/share/nginx/html

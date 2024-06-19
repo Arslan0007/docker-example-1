@@ -27,8 +27,6 @@ app.add_middleware(
 
 url = "https://api.coindesk.com/v1/bpi/currentprice.json"
 
-values = []
-headers = []
 
 def write_to_text(price, dtime):
     with open('pricelist.txt', 'a') as p:
@@ -43,4 +41,3 @@ async def root():
     write_to_text(response_usd_rate, datetime.datetime.now())
     return {"message": response_usd_rate}
     
-

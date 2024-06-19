@@ -4,6 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import requests
+import datetime
 
 app = FastAPI(
     title="MyApp",
@@ -26,11 +27,17 @@ app.add_middleware(
 
 url = "https://api.coindesk.com/v1/bpi/currentprice.json"
 
+def write_to_text(price, dtime):
+    with open('pricelist.txt', 'w') as p:
+        p.write(f'price : {price}, date : {dtime}')
+    
 
 @app.get("/")
 async def root():
     response = requests.get(url)
     response_json = response.json()
     response_usd_rate = response_json["bpi"]["USD"]["rate"]
-    
+    write_to_text(response_usd_rate, datetime.datetime.now())
     return {"message": response_usd_rate}
+    
+

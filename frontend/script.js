@@ -1,21 +1,3 @@
-// var cors = require('cors')
-// var app = express()
-// const cors = require('cors')
-// app.use(cors())
-
-// const fetchPromise = fetch("http://localhost:8000/'");
-        
-//         fetchPromise
-//             .then((response) => response.json())
-//             .then((data) => {
-//                 console.log(data);
-//             });
-        // const express = require('express');
-        // const app = express();
-
-        // app.get("http://localhost:8000/", function (req, res) {
-        //     res.send("Hello world");
-        // });
 const express = require('express');
 const cors = require('cors');
 const app = express();

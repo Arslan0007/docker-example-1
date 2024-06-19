@@ -22,6 +22,5 @@ services:
       - type: bind
         source: ./frontend
         target: /home/node/app
-        # target: /usr/share/nginx/html
 networks:
   mynetwork:

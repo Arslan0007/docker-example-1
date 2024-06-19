@@ -27,10 +27,13 @@ app.add_middleware(
 
 url = "https://api.coindesk.com/v1/bpi/currentprice.json"
 
+values = []
+headers = []
+
 def write_to_text(price, dtime):
-    with open('pricelist.txt', 'w') as p:
-        p.write(f'price : {price}, date : {dtime}')
-    
+    with open('pricelist.txt', 'a') as p:
+        p.write("\n" + f'price : {price}, date : {dtime}')
+
 
 @app.get("/")
 async def root():

@@ -3,16 +3,25 @@ services:
     build: ./backend
     ports:
       - "8000:8000"
+    networks:
+      - mynetwork
     volumes:
       - type: bind
         source: ./backend
         target: /app
+    depends_on:
+      - "frontend-node"
 
   frontend-node:
     build: ./frontend
     ports:
       - "80:80"
+    networks:
+      - mynetwork
     volumes:
       - type: bind
         source: ./frontend
-        target: /usr/share/nginx/html
+        target: /home/node/app
+        # target: /usr/share/nginx/html
+networks:
+  mynetwork:

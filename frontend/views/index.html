@@ -31,44 +31,13 @@
         <tr>
         </tr>
     </table>
-    <!-- <script src="/frontend/script.js"></script> -->
     <script>
-        // import cors from 'cors';
-        //const cors = require('cors');
-        // app.use(cors())
-        // --------------------------------------------
-        // const express = require('express');
-        // const app = express();
-
-        // app.get("http://localhost:8000/", function (req, res) {
-        //     res.send("Hello world");
-        // });
-
         fetch('http://localhost:8000/')
             .then(response => response.json())
-            .then(data => console.log(data))
-        //import cors from 'cors';
-        // -----
-        // const {cors} = require('cors');
-        // export default function(app) {
-        //     fetch('http://localhost:8000/')
-        //     .then(response => {return response.json()})
-        //     .then(data => {
-        //         data.getData()
-        //     })
-        // }
-        
-
-        async function getData(){
-            const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
-            // console.log(response);
-            const patient = await response.json();
-            // console.log(patient);
-
-            console.log(patient.bpi.USD.rate);
-            document.getElementById('patient-1').textContent = patient.bpi.USD.rate;
-        }
-        getData()
+            .then(data => {
+                console.log(data.message);
+                document.getElementById('patient-1').textContent = data.message;
+            })
     </script> 
 </body>
 </html>

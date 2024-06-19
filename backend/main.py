@@ -32,13 +32,14 @@ app.add_middleware(
 
 url = "https://api.coindesk.com/v1/bpi/currentprice.json"
 
-response = requests.get(url)
-response_json = response.json()
-print(response_json)
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    response = requests.get(url)
+    response_json = response.json()
+    response_usd_rate = response_json["bpi"]["USD"]["rate"]
+    
+    return {"message": response_usd_rate}
 
 # new
 # def get_db():

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title id="title-1">Document</title>
     
 </head>
 
@@ -11,6 +11,9 @@
     <h1 id="patient-1">
         Patient Registration System
     </h1>
+    <h2 id="patient-2">
+        Another Patient
+    </h2>
     <div id="formContainer">
         <label for="nameInput">
             Name:
@@ -37,6 +40,21 @@
             .then(data => {
                 console.log(data.message);
                 document.getElementById('patient-1').textContent = data.message;
+            })
+
+        fetch('http://localhost:8000/pricelist/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log('Data received:', data);
+                document.getElementById('patient-2').textContent = data
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
             })
     </script> 
 </body>

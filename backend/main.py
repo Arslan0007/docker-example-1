@@ -44,13 +44,29 @@ def read_to_text(pricelist):
     return content
 
 
-@app.get("/")
+@app.get("/price/usd/")
 async def root():
     response = requests.get(url)
     response_json = response.json()
     response_usd_rate = response_json["bpi"]["USD"]["rate"]
     write_to_text(response_usd_rate, datetime.datetime.now())
     return {"message": response_usd_rate}
+
+@app.get("/price/eur/")
+async def root():
+    response = requests.get(url)
+    response_json = response.json()
+    response_eur_rate = response_json["bpi"]["EUR"]["rate"]
+    write_to_text(response_eur_rate, datetime.datetime.now())
+    return {"message": response_eur_rate}
+
+@app.get("/price/gbp/")
+async def root():
+    response = requests.get(url)
+    response_json = response.json()
+    response_gbp_rate = response_json["bpi"]["GBP"]["rate"]
+    write_to_text(response_gbp_rate, datetime.datetime.now())
+    return {"message": response_gbp_rate}
 
 @app.get("/pricelist/")
 async def pricelist():

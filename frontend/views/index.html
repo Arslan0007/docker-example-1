@@ -28,11 +28,11 @@
             placeholder="Enter Role">
         <br>
         <button onclick="usdFunction()">USD</button>
-        <p id = "usd"></p>
+        <p id = "price"></p>
         <button onclick="eurFunction()">EUR</button>
-        <p id="eur"></p>
+        
         <button onclick="gbpFunction()">GBP</button>
-        <p id="gbp"></p>
+       
     </div>
 
     <table id="outputTable">
@@ -40,27 +40,26 @@
         </tr>
     </table>
     <script>
-        let usd = document.getElementById('usd');
-        let eur = document.getElementById('eur');
+        let price = document.getElementById('price');
         function usdFunction() {
             return fetch("http://localhost:8000/price/usd/")
             .then(response => response.json())
             .then(data => {
-                usd.innerHTML = data.message;
+                price.innerHTML = data.message;
             })
         }
         function eurFunction() {
             return fetch("http://localhost:8000/price/eur/")
             .then(response => response.json())
             .then(data => {
-                eur.innerHTML = data.message;
+                price.innerHTML = data.message;
             })
         }
         function gbpFunction() {
             return fetch("http://localhost:8000/price/gbp/")
             .then(response => response.json())
             .then(data => {
-                gbp.innerHTML = data.message;
+                price.innerHTML = data.message;
             })
         }
         fetch('http://localhost:8000/')

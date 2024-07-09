@@ -37,12 +37,31 @@ def write_to_text(price, dtime):
     with open('pricelist.txt', 'a') as p:
         p.write("\n" + f'price : {price}, date : {dtime}')
 
+
 def read_to_text(pricelist):
     with open('pricelist.txt', 'r') as f:
         content = f.read()
     print("\n" + pricelist + content)
     return content
 
+
+def write_to_text_as_json(pricelist):
+    filename = 'pricelist.txt'
+    dict1 = {}
+    with open(filename) as fh:
+        for line in fh:
+            command, description = line.strip().split(None, 1)
+            dict1[command] = description.strip()
+    out_file = open("pricelist.json", "w")
+    json.dump(dict1, out_file, indent = 4, sort_keys= False)
+    out_file.close()
+
+  
+def read_to_text_as_json(pricelist):
+    with open('pricelist.json', 'r') as f:
+        data = json.load(f)
+    print(data)
+    return data
 
 @app.get("/price/usd/")
 async def root():
@@ -70,4 +89,4 @@ async def root():
 
 @app.get("/pricelist/")
 async def pricelist():
-    return read_to_text('pricelist.txt')
+    return read_to_text_as_json('pricelist.json')

@@ -8,7 +8,7 @@ import datetime
 from fastapi.responses import PlainTextResponse
 from io import StringIO
 import json
-
+import bot_telegram_no_lib
 
 app = FastAPI(
     title="MyApp",
@@ -62,6 +62,16 @@ def read_to_text_as_json(pricelist):
         data = json.load(f)
     print(data)
     return data
+
+
+# @bot_telegram_no_lib.message_handler(commands=['start', 'hello'])
+def send_welcome(message):
+    bot_telegram_no_lib.send_message(message, "How are you doing?")
+    return {"message": message}
+
+
+
+
 
 @app.get("/price/usd/")
 async def root():

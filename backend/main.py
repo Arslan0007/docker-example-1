@@ -70,9 +70,6 @@ def send_welcome(message):
     return {"message": message}
 
 
-
-
-
 @app.get("/price/usd/")
 async def root():
     response = requests.get(url)
@@ -80,6 +77,7 @@ async def root():
     response_usd_rate = response_json["bpi"]["USD"]["rate"]
     write_to_text(response_usd_rate, datetime.datetime.now())
     return {"message": response_usd_rate}
+
 
 @app.get("/price/eur/")
 async def root():
@@ -89,6 +87,7 @@ async def root():
     write_to_text(response_eur_rate, datetime.datetime.now())
     return {"message": response_eur_rate}
 
+
 @app.get("/price/gbp/")
 async def root():
     response = requests.get(url)
@@ -96,6 +95,7 @@ async def root():
     response_gbp_rate = response_json["bpi"]["GBP"]["rate"]
     write_to_text(response_gbp_rate, datetime.datetime.now())
     return {"message": response_gbp_rate}
+
 
 @app.get("/pricelist/")
 async def pricelist():
